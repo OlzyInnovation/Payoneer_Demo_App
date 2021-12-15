@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.util.LogPrinter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,8 +17,10 @@ import com.olzyinnovation.payoneerdemo.api.ApiClient.ApiInterface;
 import com.olzyinnovation.payoneerdemo.api.paymentOptions.Applicable;
 import com.olzyinnovation.payoneerdemo.api.paymentOptions.Networks;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,6 +31,7 @@ public class PaymentProcessPage extends AppCompatActivity {
     private PaymentRecyclerViewAdapter adapter = new PaymentRecyclerViewAdapter(PaymentProcessPage.this);
     ApiInterface apiInterface;
     List<Applicable> applicableList;
+    public static final String TAG = "PaymentProcessPage";
 
 
     @Override
@@ -55,24 +60,37 @@ public class PaymentProcessPage extends AppCompatActivity {
 
             @Override
             public void onResponse(Call<Networks> call, Response<Networks> response) {
-                if (response.isSuccessful()) {
+                try {
+                    int responseCode = response.code();
+                    if (response.isSuccessful()) {
 
-                    applicableList = (List<Applicable>) response.body().getNetworkOptions();
+                        applicableList = (List<Applicable>) response.body().getNetworkOptions();
 
 
-                    for (int i = 0; i < applicableList.size(); i++) {
-                        adapter = new PaymentRecyclerViewAdapter(PaymentProcessPage.this);
+                        for (int i = 0; i < applicableList.size(); i++) {
+                            adapter = new PaymentRecyclerViewAdapter(PaymentProcessPage.this);
 
-                        adapter.setPayments((ArrayList<Applicable>) applicableList);
+                            adapter.setPayments((ArrayList<Applicable>) applicableList);
 
+                        }
+                        paymentsRecView.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+                    }else if (responseCode == 404) {
+                        Toast.makeText(PaymentProcessPage.this, "Something went wrong, Please try again later", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "404 API Error");
+                    }else if (responseCode == 500) {
+                        Toast.makeText(PaymentProcessPage.this, "Something went wrong, Please try again later", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "500 API Error");
                     }
-                    paymentsRecView.setAdapter(adapter);
-                    adapter.notifyDataSetChanged();
+
+                }catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
 
             @Override
             public void onFailure(Call<Networks> call, Throwable t) {
+                t.printStackTrace();
 
             }
         });
