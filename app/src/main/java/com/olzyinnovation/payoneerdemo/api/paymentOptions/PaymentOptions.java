@@ -13,10 +13,6 @@ public class PaymentOptions {
     @Expose
     private String label;
 
-    @SerializedName("logo")
-    @Expose
-    private Logo logo;
-
 
     public String getCode() {
         return code;
@@ -32,13 +28,5 @@ public class PaymentOptions {
 
     public void setLabel(String label) {
         this.label = label;
-    }
-
-    public Logo getLogo() {
-        return logo;
-    }
-
-    public void setLogo(Logo logo) {
-        this.logo = logo;
     }
 }

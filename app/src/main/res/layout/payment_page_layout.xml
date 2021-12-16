@@ -2,44 +2,49 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="150dp"
+    android:layout_height="150dp"
     android:layout_centerHorizontal="false"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="10dp"
     android:id="@+id/rlParent">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cdCardView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_margin="10dp"
         android:elevation="3dp"
         app:cardCornerRadius="5dp">
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/rlCardViewContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="20dp">
+            android:orientation="vertical"
+            android:layout_gravity="center">
 
 
             <ImageView
                 android:id="@+id/ivPaymentOptionImage"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="100dp"
+                android:layout_height="70dp"
                 android:src="@drawable/ic_launcher_background"
-                android:layout_centerVertical="true"/>
+                android:layout_marginBottom="5dp"
+                android:layout_gravity="center"
+                />
 
             <TextView
                 android:id="@+id/tvPaymentOptionName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
                 android:text="Pay Pal"
-                android:textSize="20sp"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/ivPaymentOptionImage"
-                android:layout_marginStart="13dp"/>
+                android:textSize="16sp"
+                android:layout_marginStart="13dp"
+                android:layout_gravity="left"
+                />
 
-        </RelativeLayout>
+        </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
 

@@ -11,6 +11,10 @@ public class Networks {
     @Expose
     private Applicable networkOptions;
 
+    public Networks(Applicable networkOptions) {
+        this.networkOptions = networkOptions;
+    }
+
     public Applicable getNetworkOptions() {
         return networkOptions;
     }
