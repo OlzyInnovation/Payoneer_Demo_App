@@ -1,8 +1,6 @@
 package com.olzyinnovation.payoneerdemo.payment;
 
 import android.content.Context;
-import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +17,6 @@ import com.olzyinnovation.payoneerdemo.R;
 import com.olzyinnovation.payoneerdemo.api.paymentOptions.Applicable;
 
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 public class PaymentRecyclerViewAdapter extends RecyclerView.Adapter<PaymentRecyclerViewAdapter.ViewHolder> {
 
@@ -46,17 +43,11 @@ public class PaymentRecyclerViewAdapter extends RecyclerView.Adapter<PaymentRecy
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tvPaymentOptionName.setText(payments.get(position).getPaymentOptions().get(position).getCode());
-//        holder.ivPaymentOptionImage.setImageURI(Uri.parse(payments.get(position).setLogo((String)payments.get(position).getLogo().getLogo())));
-//        (String)payments.get(position).getLogo().getLogo())
-//        payments.get(position).getLogo().getLogo()
-//        holder.ivPaymentOptionImage.setImageURI();
-
 
         Glide.with(context)
                 .asBitmap()
                 .load(payments.get(position).getLogo())
                 .into(holder.ivPaymentOptionImage);
-//        Log.d("Logging Logo", payments.get(position).getLogo().getLogo());
         holder.rlParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

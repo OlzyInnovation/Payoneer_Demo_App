@@ -1,7 +1,12 @@
 package com.olzyinnovation.payoneerdemo.api.paymentOptions;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Logo {
 
+    @SerializedName("code")
+    @Expose
     private String logo;
 
     public Logo(String logo) {

@@ -23,10 +23,6 @@ public class Applicable {
         return paymentOptions;
     }
 
-    public void setPaymentOptions(ArrayList<PaymentOptions> paymentOptions) {
-        this.paymentOptions = paymentOptions;
-    }
-
     public Logo getLogo() {
         return logo;
     }
